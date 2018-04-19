@@ -1,0 +1,97 @@
+ --------------------------------------------------------
+|                      Requirements                      |
+ --------------------------------------------------------
+-query.txt: selectivities
+    0.2 0.1 0.9
+    0.4 0.2 0.1
+    ...
+-config.tct: costs
+    r = 1
+    t = 2
+    l = 1
+    m = 16
+    a = 2
+    f = 4
+ --------------------------------------------------------
+|                      Command Line                      |
+ --------------------------------------------------------
+./stage2.sh query.txt config.txt
+ --------------------------------------------------------
+|                 Variables and Equations                |
+ --------------------------------------------------------
+n = # of basic terms
+p = product of selectivities
+b = no-branch used? set 0
+c = current best cost
+L = left child in dynamic programming
+R = right child in dynamic programming
+
+4.4:        kr + (k - 1)l + f1 + ... + fk + a
+4.5:        kr + (k - 1)l + f1 + ... + fk + t + mq + p1...pka
+Eq 1:       fcost(E) + mq + pC
+fcost(E):   kr + (k - 1)l + f1 + ... + fk + t
+ --------------------------------------------------------
+|                        Algorithm                       |
+ --------------------------------------------------------
+                    Ex: 0.2 0.1 0.9
+S   = {f1, f2, f3}
+k   = 3
+A[] = [s1, s2, s3, s4, s5, s6, s7, s8]
+
+s1 = [null, null,   null]
+s2 = [f1,   null,   null]
+s3 = [f2,   null,   null]
+s4 = [f3,   null,   null]
+s5 = [f1,   f2,     null]
+s6 = [f1,   f3,     null]
+s7 = [f2,   f3,     null]
+s8 = [f1,   f2,     f3]
+
+1) Use 4.4 and 4.5 on each. Store best in each array index.
+Plan 1: f1
+Plan 2: f2
+Plan 3: f3
+Plan 4: f1 & f2
+Plan 5: f1 & f3
+Plan 6: f2 & f3
+Plan 7: f1 & f2 & f3
+
+2) Dynamic programming. Create right-most trees of possible plans.
+Possibilities:
+f1
+f2 && f1
+f3 && f1
+(f2 & f3) && f1
+
+f2
+f1 && f2
+f3 && f2
+(f1 & f3) && f2
+
+f3
+f1 && f3
+f2 && f3
+(f1 & f2) && f3
+ --------------------------------------------------------
+|                      Java Pseudo                       |
+ --------------------------------------------------------
+//open query.txt and config.txt
+a, b = query.txt, config.txt
+
+//import all variables in config.txt
+r = 1, t = 2, l = 1, m = 16, a = 2, f = 4
+
+//loop through each line in query.txt
+for i in query.txt:
+    //function algorithm(*args), args=select. in query.txt line
+    algorithm()
+
+//algoritm(*args) function
+    //Set-up
+    S = {x1 for arg in args}
+    k = len(S)
+    A[] = []
+
+    //Do part 1
+
+
