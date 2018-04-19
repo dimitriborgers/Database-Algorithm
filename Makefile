@@ -12,7 +12,8 @@ JFLAGS = -g
 #all working java source files
 CLASSES = \
 		Algorithm.java \
-		Main.java
+		Main.java \
+		Read.java
 
 #default make target entry
 default: classes
