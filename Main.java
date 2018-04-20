@@ -16,12 +16,13 @@ public class Main {
             for (int j = 0; j < k; j++) {
                 if ((i & (1 << j)) > 0) {
                     tempArray.add(arr[j]);
-                    System.out.print(arr[j] + " ");
+                    // System.out.print(arr[j] + " ");
                 }
             }
-            System.out.println("");
             dict.add(tempArray);
+            arrange(dict);
         }
+        System.out.println(dict + "\n");
         CalcOne(dict);
         return dict;
     }
@@ -33,6 +34,20 @@ public class Main {
         double r = configurations.get("r"); double t = configurations.get("t");
         double l = configurations.get("l"); double m = configurations.get("m");
         double a = configurations.get("a"); double f = configurations.get("f");
+    }
+
+    public static List<List<Double>> arrange(List<List<Double>> dict) {
+        for (int i = 1; i < dict.size() - 1; i++) {
+            if (dict.get(i).size() <= dict.get(i+1).size()) {
+                continue;
+            } else {
+                List<Double> temp = dict.get(i+1);
+                dict.set(i+1, dict.get(i));
+                dict.set(i, temp);
+                arrange(dict);
+            }
+        }
+        return dict;
     }
 
     public static void CalcOne(List<List<Double>> dict) throws Exception {
@@ -53,7 +68,6 @@ public class Main {
             for (double num : temp) {
                 p *= num;
             }
-
             double q;
             if (p <= .5) { q = p; } else { q = 1 - p; }
 
