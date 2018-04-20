@@ -14,47 +14,58 @@ public class Main {
             for (int j = 0; j < k; j++) {
                 if ((i & (1 << j)) > 0) {
                     tempArray.add(arr[j]);
-                    System.out.print(arr[j]);
                 }
             }
-            System.out.println("");
             dict.add(tempArray);
+            arrange(dict);
         }
-        CalcOne(dict);
+        System.out.println(dict);
+        //CalcOne(dict);
         return dict;
     }
 
-    public static void CalcOne(List<List<Double>> dict) throws Exception {
-        Read config = new Read();
-        Map<String, Double> configurations = config.cfetch();
-
-        double r = configurations.get("r"); double t = configurations.get("t");
-        double l = configurations.get("l"); double m = configurations.get("m");
-        double a = configurations.get("a"); double f = configurations.get("f");
-
-        for (List<Double> temp : dict) {
-            double p = 1;
-            int k = temp.size();
-            int power = (int) Math.pow(2,k);
-            double[] best = new double[power];
-            int count = 0;
-
-            for (double num : temp) {
-                p *= num;
+    public static List<List<Double>> arrange(List<List<Double>> dict) {
+        for (int i = 1; i < dict.size() - 1; i++) {
+            if (dict.get(i).size() <= dict.get(i+1).size()) {
+                continue;
+            } else {
+                List<Double> temp = dict.get(i+1);
+                dict.set(i+1, dict.get(i));
+                dict.set(i, temp);
+                arrange(dict);
             }
-            double q;
-            if (p <= .5) { q = p; } else { q = 1 - p; }
-
-            double logicalAnd = k*r + ((k - 1)*l) + (k*f) + t + m*q + (p*a);
-            System.out.print(logicalAnd + " ");
-            double noBranch = k*r + ((k - 1)*l) + (k*f) + a;
-            System.out.print(noBranch + " ");
-
-            best[count]=Math.min(logicalAnd, noBranch);
-            System.out.println (best[count]);
-            count++;
         }
+        return dict;
     }
+
+    // public static void CalcOne(List<List<Double>> dict) throws Exception {
+    //     Read config = new Read();
+    //     Map<String, Double> configurations = config.cfetch();
+
+    //     double r = configurations.get("r"); double t = configurations.get("t");
+    //     double l = configurations.get("l"); double m = configurations.get("m");
+    //     double a = configurations.get("a"); double f = configurations.get("f");
+
+    //     for (List<Double> temp : dict) {
+    //         double p = 1;
+    //         int k = temp.size();
+    //         int power = (int) Math.pow(2,k);
+    //         double[] best = new double[power];
+    //         int count = 0;
+
+    //         for (double num : temp) {
+    //             p *= num;
+    //         }
+    //         double q;
+    //         if (p <= .5) { q = p; } else { q = 1 - p; }
+
+    //         double logicalAnd = k*r + ((k - 1)*l) + (k*f) + t + m*q + (p*a);
+    //         double noBranch = k*r + ((k - 1)*l) + (k*f) + a;
+
+    //         best[count]=Math.min(logicalAnd, noBranch);
+    //         count++;
+    //     }
+    // }
 
     public static void main(String[] args) throws Exception {
         Read query = new Read();
