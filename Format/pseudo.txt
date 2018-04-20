@@ -82,6 +82,10 @@ a, b = query.txt, config.txt
 //import all variables in config.txt
 r = 1, t = 2, l = 1, m = 16, a = 2, f = 4
 
+//Result:
+    query = [[],[],[]...]
+    config = { x:x, y:y, ...}
+
 //loop through each line in query.txt
 for i in query.txt:
     //function algorithm(*args), args=select. in query.txt line

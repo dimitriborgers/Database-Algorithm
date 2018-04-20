@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Read {
-
+    //Should I return the list and Map?
     public static void main(String [] args) throws Exception {
         //Query.txt
         //Open file, create scanner, and ArrayList
