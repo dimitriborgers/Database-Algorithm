@@ -1,84 +1,64 @@
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main {
-    //I created an arraylist of arraylists because Array can't hold objects?
-    //Why can I use just a List object?
-    //How do you check what Java version your computer has?
-    public static void printSubsets(String arr[]) {
+
+    public static List<List<Double>> findSubsets(Double[] arr) throws Exception {
         int k = arr.length;
         int power = (int) Math.pow(2,k);
-        //ArrayList<String[]> subArray = new ArrayList<String[]>();
-        List<List<String>> dict = new ArrayList<List<String>>();
+        List<List<Double>> dict = new ArrayList<List<Double>>();
 
         for (int i = 1; i < power; i++) {
-            List<String> tempArray = new ArrayList<String>();
-            //String[] arrTemp = new String[k];
+            List<Double> tempArray = new ArrayList<Double>();
 
             for (int j = 0; j < k; j++) {
                 if ((i & (1 << j)) > 0) {
-                    //arrTemp[j] = arr[j];
                     tempArray.add(arr[j]);
-                    //System.out.print("hi");
+                    System.out.print(arr[j]);
                 }
             }
-            //System.out.println("");
-            //subArray.add(tempArray);
+            System.out.println("");
             dict.add(tempArray);
-            //System.out.println(tempArray.get(0));
         }
-        //System.out.println(tempArray.get(0));
-        //System.out.println(dict.get(0).get(0));
-        //System.out.println(dict.get(0));
+        CalcOne(dict);
+        return dict;
     }
 
+    public static void CalcOne(List<List<Double>> dict) throws Exception {
+        Read config = new Read();
+        Map<String, Double> configurations = config.cfetch();
 
+        double r = configurations.get("r"); double t = configurations.get("t");
+        double l = configurations.get("l"); double m = configurations.get("m");
+        double a = configurations.get("a"); double f = configurations.get("f");
 
+        for (List<Double> temp : dict) {
+            double p = 1;
+            int k = temp.size();
+            int power = (int) Math.pow(2,k);
+            double[] best = new double[power];
+            int count = 0;
 
-        //temporary Code
-        // double[] best = new double[power];
+            for (double num : temp) {
+                p *= num;
+            }
+            double q;
+            if (p <= .5) { q = p; } else { q = 1 - p; }
 
-        // double r = 1;
-        // double t = 2;
-        // double l = 1;
-        // double m = 16;
-        // double a = 2;
-        // double f = 4;
-        // double[] selec = {0.2, 0.1, 0.9};
-        // double p = 1;
-        // for (double num : selec) {
-        //     p *= num;
-        // }
-        // System.out.println(p);
-        // double q;
-        // if (p <= .5) {
-        //     q = p;
-        // } else {
-        //     q = 1 - p;
-        // }
-        // double logicalAnd = k*r + ((k - 1)*l) + (k*f) + t + m*q + (p*a);
-        // System.out.println(logicalAnd);
-        // double noBranch = k*r + ((k - 1)*l) + (k*f) + a;
-        // System.out.println(noBranch);
+            double logicalAnd = k*r + ((k - 1)*l) + (k*f) + t + m*q + (p*a);
+            System.out.print(logicalAnd + " ");
+            double noBranch = k*r + ((k - 1)*l) + (k*f) + a;
+            System.out.print(noBranch + " ");
 
-        // for (int i = 1; i < power; i++) {
-        //     best[i]=Math.min(logicalAnd, noBranch);
-        // }
-        //kr + (k - 1)l + f1 + ... + fk + a
-        //kr + (k - 1)l + f1 + ... + fk + t + mq + p1...pka
-        //q = p if p < 0.5 or q = 1 - p
+            best[count]=Math.min(logicalAnd, noBranch);
+            System.out.println (best[count]);
+            count++;
+        }
+    }
 
-
-
-
-        //return subArray;
-
-
-
-    public static void main(String[] args) {
-        String arr[] = {"a", "b", "c"};
-        printSubsets(arr);
+    public static void main(String[] args) throws Exception {
+        Read query = new Read();
+        List<Double[]> selectivities = query.qfetch();
+        findSubsets(selectivities.get(0));
     }
 }
