@@ -5,12 +5,16 @@ import java.util.*;
 
 public class Read {
     //Should I return the list and Map?
+    //Difference between List and ArrayList?
+    //Am I using Float or float for temp array? What is the difference?
+        //-Seems I can use Float and it works just like float...
+    //For arrSelec, how am I able to add float primitives if it takes Float?
     public static void main(String [] args) throws Exception {
         //Query.txt
-        //Open file, create scanner, and ArrayList
+        //Open file, create scanner, and list to hold arrays of line tokens
         File query = new File("query.txt");
         Scanner squery = new Scanner(query);
-        ArrayList<Float[]> lineArray = new ArrayList<Float[]>();
+        List<Float[]> lineArray = new ArrayList<Float[]>();
 
         //Loop through each line, split by space, and create an array
         while (squery.hasNextLine()) {
