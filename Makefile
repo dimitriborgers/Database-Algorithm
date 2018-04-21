@@ -11,7 +11,6 @@ JFLAGS = -g
 
 #all working java source files
 CLASSES = \
-		Algorithm.java \
 		Main.java \
 		Read.java
 

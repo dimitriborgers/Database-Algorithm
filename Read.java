@@ -7,9 +7,6 @@ public class Read {
     String configFile;
 
     Read(String queryFile, String configFile) {
-        System.out.println("Constructor called");
-        System.out.println("queryFile: " + queryFile);
-        System.out.println("configFile: " + configFile);
         this.queryFile = queryFile;
         this.configFile = configFile;
     }
