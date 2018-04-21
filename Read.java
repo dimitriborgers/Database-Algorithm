@@ -11,20 +11,23 @@ public class Read {
         this.configFile = configFile;
     }
 
-    public List<Double[]> qfetch() throws Exception {
+    public List<List<Double>> qfetch() throws Exception {
         //Query.txt
         //Open file, create scanner, and list to hold arrays of line tokens
         File query = new File(this.queryFile);
         Scanner squery = new Scanner(query);
-        List<Double[]> lineArray = new ArrayList<Double[]>();
+        //List<Double[]> lineArray = new ArrayList<Double[]>();
+        List<List<Double>> lineArray = new ArrayList<List<Double>>();
 
         //Loop through each line, split by space, and create an array
         while (squery.hasNextLine()) {
             String[] stokens = squery.nextLine().split("\\s+");
-            Double[] arrSelec = new Double[stokens.length];
+            //Double[] arrSelec = new Double[stokens.length];
+            List<Double> arrSelec = new ArrayList<Double>();
             for (int i = 0; i < stokens.length; i++) {
                 double selec = Double.parseDouble(stokens[i]);
-                arrSelec[i] = selec;
+                //arrSelec[i] = selec;
+                arrSelec.add(selec);
             }
             //Insert array into global array list
             lineArray.add(arrSelec);
