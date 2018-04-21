@@ -13,6 +13,7 @@ JFLAGS = -g
 CLASSES = \
 		Algorithm.java \
 		Main.java \
+		Printer.java \
 		Read.java
 
 #default make target entry

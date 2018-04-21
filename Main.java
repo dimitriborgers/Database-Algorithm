@@ -88,7 +88,9 @@ public class Main {
         List<Double[]> selectivities = query.qfetch();
         Map<String, Double> configurations = query.cfetch();
 
-        List<List<Double>> subsets = findSubsets(selectivities.get(0));
-        CalcOne(configurations, subsets);
+        // List<List<Double>> subsets = findSubsets(selectivities.get(0));
+        // CalcOne(configurations, subsets);
+        Printer p = new Printer();
+        p.print(selectivities.get(0), 10.5);       
     }
 }
