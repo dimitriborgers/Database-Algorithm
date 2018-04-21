@@ -20,7 +20,9 @@ public class Printer {
         String[] terms = new String[best.length];
 
         for (int i = 0; i < best.length; i++) {
-            terms[i] = formatExp(i+1);
+            // int index = selectivities.indexOf(best[i]);
+            int index = java.util.Arrays.asList(selectivities).indexOf(best[i]);
+            terms[i] = formatExp(index+1);
         }
         String ifStr = "if(" + String.join(" && ", terms) + ") {";
         System.out.println(ifStr);
