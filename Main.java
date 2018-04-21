@@ -91,6 +91,6 @@ public class Main {
         // List<List<Double>> subsets = findSubsets(selectivities.get(0));
         // CalcOne(configurations, subsets);
         Printer p = new Printer();
-        p.print(selectivities.get(0), 10.5);       
+        p.print(selectivities.get(0), selectivities.get(0), 10.5);       
     }
 }
