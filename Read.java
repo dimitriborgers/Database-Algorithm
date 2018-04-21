@@ -3,10 +3,21 @@ import java.util.*;
 
 public class Read {
 
-    public static List<Double[]> qfetch() throws Exception {
+    String queryFile;
+    String configFile;
+
+    Read(String queryFile, String configFile) {
+        System.out.println("Constructor called");
+        System.out.println("queryFile: " + queryFile);
+        System.out.println("configFile: " + configFile);
+        this.queryFile = queryFile;
+        this.configFile = configFile;
+    }
+
+    public List<Double[]> qfetch() throws Exception {
         //Query.txt
         //Open file, create scanner, and list to hold arrays of line tokens
-        File query = new File("query.txt");
+        File query = new File(this.queryFile);
         Scanner squery = new Scanner(query);
         List<Double[]> lineArray = new ArrayList<Double[]>();
 
@@ -26,10 +37,10 @@ public class Read {
         return lineArray;
     }
 
-    public static Map<String, Double> cfetch() throws Exception {
+    public Map<String, Double> cfetch() throws Exception {
         //Config.txt
         //Open file, create scanner, and Map
-        File config = new File("config.txt");
+        File config = new File(this.configFile);
         Scanner sconfig = new Scanner(config);
         Map<String, Double> configMap = new HashMap<String, Double>();
 
