@@ -23,7 +23,7 @@ public class Main {
             arrange(dict);
         }
         System.out.println(dict + "\n");
-        CalcOne(dict);
+        // CalcOne(dict);
         return dict;
     }
 
@@ -50,34 +50,34 @@ public class Main {
         return dict;
     }
 
-    public static void CalcOne(List<List<Double>> dict) throws Exception {
-        // double r = configurations.get("r"); double t = configurations.get("t");
-        // double l = configurations.get("l"); double m = configurations.get("m");
-        // double a = configurations.get("a"); double f = configurations.get("f");
+    public static void CalcOne(Map<String, Double> configurations, List<List<Double>> dict) throws Exception {
+        double r = configurations.get("r"); double t = configurations.get("t");
+        double l = configurations.get("l"); double m = configurations.get("m");
+        double a = configurations.get("a"); double f = configurations.get("f");
 
-        // for (List<Double> temp : dict) {
-        //     double p = 1;
-        //     int k = temp.size();
-        //     int power = (int) Math.pow(2,k);
-        //     double[] best = new double[power];
-        //     int count = 0;
+        for (List<Double> temp : dict) {
+            double p = 1;
+            int k = temp.size();
+            int power = (int) Math.pow(2,k);
+            double[] best = new double[power];
+            int count = 0;
 
-        //     for (double num : temp) {
-        //         p *= num;
-        //     }
-        //     double q;
-        //     if (p <= .5) { q = p; } else { q = 1 - p; }
+            for (double num : temp) {
+                p *= num;
+            }
+            double q;
+            if (p <= .5) { q = p; } else { q = 1 - p; }
 
-        //     double logicalAnd = k*r + ((k - 1)*l) + (k*f) + t + m*q + (p*a);
-        //     System.out.print(temp + " => p: " + p + "\n");
-        //     System.out.print(" - logicalAnd: " + logicalAnd + " \n");
-        //     double noBranch = k*r + ((k - 1)*l) + (k*f) + a;
-        //     System.out.print(" - nobranch: " + noBranch + " \n");
+            double logicalAnd = k*r + ((k - 1)*l) + (k*f) + t + m*q + (p*a);
+            System.out.print(temp + " => p: " + p + "\n");
+            System.out.print(" - logicalAnd: " + logicalAnd + " \n");
+            double noBranch = k*r + ((k - 1)*l) + (k*f) + a;
+            System.out.print(" - nobranch: " + noBranch + " \n");
 
-        //     best[count]=Math.min(logicalAnd, noBranch);
-        //     System.out.println (" - best: " + best[count]);
-        //     count++;
-        // }
+            best[count]=Math.min(logicalAnd, noBranch);
+            System.out.println (" - best: " + best[count]);
+            count++;
+        }
     }
 
     public static void main(String[] args) throws Exception {
@@ -88,6 +88,7 @@ public class Main {
         List<Double[]> selectivities = query.qfetch();
         Map<String, Double> configurations = query.cfetch();
 
-        findSubsets(selectivities.get(0));
+        List<List<Double>> subsets = findSubsets(selectivities.get(0));
+        CalcOne(configurations, subsets);
     }
 }
