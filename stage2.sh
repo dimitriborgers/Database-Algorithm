@@ -1,4 +1,6 @@
 #!/bin/bash
+clear
+
 FILE1=$1
 FILE2=$2
 

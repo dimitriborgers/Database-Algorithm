@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.*;
+import javafx.util.*;
 
 public class Main {
 
@@ -19,8 +20,52 @@ public class Main {
             dict.add(tempArray);
         }
         arrange(dict);
+
+        System.out.println(dict);
+        List<Double> lastSet = dict.get(power-2);
+        CalcTwo(lastSet);
         return dict;
     }
+
+    public static void CalcTwo(List<Double> lastSet) {
+        Double temporary = lastSet.remove(0);
+        System.out.println(temporary);
+        System.out.println(lastSet);
+        if (lastSet.size() = 1) {
+            double cost = CalcOne.List<Double>best[matching index];
+        } else {
+            fcost(temporary) + mq + CalcTwo(lastSet);
+        }
+        // Eq 1:       fcost(What's on left) + mq + p*(Eq 1 on what's on right)
+        // fcost(E):   kr + (k - 1)l + f1 + ... + fk + t
+    }
+
+
+    public static Pair<ArrayList<String>, Double>> Calculate(Double cost, List<List<Double>> dict, boolean first, ArrayList<String> arr) {
+        List<Double> singleAmbersign = new ArrayList<Double>();
+        Pair<Double,Double> bestPair = new Pair <Double,Double>();
+
+        if(dict.isEmpty()) {
+            return bestPair;
+
+        for(int i = 0; i < list.length; i++) {
+            if((first == true) && (i == list.length - 1)) {
+                continue;
+            } else {
+
+            List<Double> f_not_i = dict;
+            f_not_i.remove(0);
+            ArrayList<String> arrCopy = arr;
+            arrCopy.add("hi");
+            Pair<ArrayList<String>, Double>> returnPair = Calculate(cost(i,cost), f_not_i, false, arrCopy);
+            if(returnPair.cost < bestPair.cost) {
+//                 bestPair = returnPair
+//         }
+//       }
+//       return bestPair;
+// }
+
+
 
     public static List<List<Double>> arrange(List<List<Double>> dict) {
         for (int i = 1; i < dict.size() - 1; i++) {
