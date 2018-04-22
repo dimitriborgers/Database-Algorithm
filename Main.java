@@ -6,7 +6,7 @@ public class Main {
 
     static Map<String, Double> configurations;
     static Double[] BestCombo;
-    boolean logicalAndBool;
+    static boolean logicalAndBool;
 
     static void combinations(Double[] arr, List<Double[]> data, int k) {
         if (k == arr.length) {
@@ -160,10 +160,10 @@ public class Main {
         List<List<Double>> selectivities = query.qfetch();
         configurations = query.cfetch();
 
-        for (int i = 0; input.size()-1; i++) {
+        for (int i = 0; i < selectivities.size() - 1; i++) {
             List<Double> input = selectivities.get(i);
             Double bestCost = determineBestPath(input);
-            Printer.print(input, BestCombo, cost, logicalAndBool);
+            Printer.print(input, BestCombo, bestCost, logicalAndBool);
         }
     }
 }
