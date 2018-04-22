@@ -5,6 +5,8 @@ import javafx.util.*;
 public class Main {
 
     static Map<String, Double> configurations;
+    static Double[] BestCombo;
+    boolean logicalAndBool;
 
     static void combinations(Double[] arr, List<Double[]> data, int k) {
         if (k == arr.length) {
@@ -90,6 +92,12 @@ public class Main {
                 Double noBranch = k*r + ((k - 1)*l) + (k*f) + a;
                 // System.out.println("no branch:   " + noBranch);
                 Double bestOf1 = Math.min(logicalAnd2,branchingAnd);
+                if (logicalAnd2 == bestOf1) {
+                    logicalAndBool = true;
+                }
+                else {
+                    logicalAndBool = false;
+                }
                 Double bestOf2 = Math.min(bestOf1,noBranch);
                 return bestOf2;
             } else {
@@ -138,6 +146,7 @@ public class Main {
 
             if(cost < bestPath) {
                 bestPath = cost;
+                BestCombo = d;
             }
         }
         return bestPath;
@@ -154,11 +163,7 @@ public class Main {
         for (int i = 0; input.size()-1; i++) {
             List<Double> input = selectivities.get(i);
             Double bestCost = determineBestPath(input);
-
-            Double[] bestPath = {0.5, 0.8, 0.2, 0.3};
-            Double cost = 10.5;
-            Boolean logicalAnd = true;
-            Printer.print(input, bestPath, cost, logicalAnd);
+            Printer.print(input, BestCombo, cost, logicalAndBool);
         }
     }
 }
