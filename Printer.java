@@ -7,9 +7,7 @@ public class Printer {
         return "t" + i + "[o" + i + "[i]]";
     }
 
-    // , Pair<Double,Boolean> pair
-
-    public static void print(List<Double> selectivities, Double[] bestPath ) throws Exception {
+    public static void print(List<Double> selectivities, Double[] bestPath, Double cost, Boolean logicalAnd) throws Exception {
 
 
         // System.out.println("==================================================================");
