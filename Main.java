@@ -120,6 +120,23 @@ public class Main {
         return fCost;
     }
 
+    public static void determineBestPath(List<Double> input) {
+        // generate all combinations for a set of selectives
+        List<Double[]> combinations = generateCombinations(input);
+        // for each combination use recurse to find the min for a path.
+        for (Double[] d : combinations) {
+            // test print the combinations 
+            // for (Double t : d) {
+            //     System.out.print(t + ", ");
+            // }
+
+            List<Double> list = Arrays.asList(d);
+            Double min = Recurse(list);
+            System.out.print(" => " + min);
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         String queryFile = args[0];
         String configFile = args[1];
@@ -129,19 +146,10 @@ public class Main {
         configurations = query.cfetch();
 
         List<Double> input = selectivities.get(0);
-        // test combinations fn; example
-        List<Double[]> combinations = generateCombinations(input);
-        // test print the combinations 
-        for (Double[] d : combinations) {
-            for (Double t : d) {
-                System.out.print(t + ", ");
-            }
-            System.out.println();
-        }
+        
+        determineBestPath(input);
 
         //List<Double> remainder = new ArrayList<Double>();
-
-       // Recurse(configurations, input);
 
         //List<List<Double>> subsets = findSubsets(selectivities.get(0));
 

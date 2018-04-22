@@ -3,11 +3,11 @@ import java.util.*;
 
 public class Printer {
 
-    private String formatExp(int i) {
+    private static String formatExp(int i) {
         return "t" + i + "[o" + i + "[i]]";
     }
 
-    public void print(Double[] selectivities, Double[] best, Double cost) throws Exception {
+    public static void print(Double[] selectivities, Double[] best, Double cost) throws Exception {
         System.out.println("==================================================================");
 
         // Print the selectivities
