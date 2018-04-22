@@ -3,6 +3,8 @@ import java.util.*;
 
 public class Main {
 
+    static Map<String, Double> configurations;
+
     // public static List<List<Double>> findSubsets(Double[] arr) throws Exception {
     //     int k = arr.length;
     //     int power = (int) Math.pow(2,k);
@@ -23,7 +25,7 @@ public class Main {
     //     return dict;
     // }
 
-    public static Double Recurse(Map<String, Double> configurations, List<Double> input) {
+    public static Double Recurse(List<Double> input) {
         double r = configurations.get("r"); double t = configurations.get("t");
         double l = configurations.get("l"); double m = configurations.get("m");
         double a = configurations.get("a"); double f = configurations.get("f");
@@ -37,7 +39,7 @@ public class Main {
                 arr.add(temp);
             }
             System.out.println("input: " + input + "   remainder " + arr);
-            Double tempCost = Recurse(configurations, arr);
+            Double tempCost = Recurse(arr);
             System.out.println("temporary costs: " + tempCost);
 
             double p = 1;
@@ -51,7 +53,7 @@ public class Main {
 
             Double logicalAnd2 = k*r + ((k - 1)*l) + (k*f) + t + m*q + (p*a);
             System.out.println("logicalAnd:  " + logicalAnd2);
-            Double branchingAnd = fcost(configurations, input.get(0)) + (m*q) + p*(tempCost);
+            Double branchingAnd = fcost(input.get(0)) + (m*q) + p*(tempCost);
             System.out.println("branchingAnd:    " + branchingAnd);
             if (branchingAnd < logicalAnd2) {
                 noUsed = true;
@@ -81,7 +83,7 @@ public class Main {
         }
     }
 
-    public static Double fcost(Map<String, Double> configurations, Double arg) {
+    public static Double fcost(Double arg) {
         double r = configurations.get("r"); double t = configurations.get("t");
         double l = configurations.get("l"); double m = configurations.get("m");
         double a = configurations.get("a"); double f = configurations.get("f");
@@ -144,7 +146,7 @@ public class Main {
 
         Read query = new Read(queryFile, configFile);
         List<List<Double>> selectivities = query.qfetch();
-        Map<String, Double> configurations = query.cfetch();
+        configurations = query.cfetch();
 
         List<Double> input = selectivities.get(0);
         //List<Double> remainder = new ArrayList<Double>();
