@@ -158,9 +158,9 @@ public class Main {
         Double bestCost = determineBestPath(input);
         System.out.println("best path cost: " + bestCost);
 
-        Double[] bestPath = {0.5, 0.8, 0.2};
+        Double[] bestPath = {0.5, 0.8, 0.2, 0.3};
         Double cost = 10.5;
-        Boolean logicalAnd = false;
+        Boolean logicalAnd = true;
         Printer.print(input, bestPath, cost, logicalAnd);
 
         //List<Double> remainder = new ArrayList<Double>();
