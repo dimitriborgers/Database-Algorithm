@@ -12,7 +12,8 @@ JFLAGS = -g
 #all working java source files
 CLASSES = \
 		Main.java \
-		Read.java
+		Read.java \
+		Printer.java
 
 #default make target entry
 default: classes
