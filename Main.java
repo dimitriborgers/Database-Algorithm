@@ -5,6 +5,7 @@ public class Main {
 
     static Map<String, Double> configurations;
 
+<<<<<<< HEAD
     // public static List<List<Double>> findSubsets(Double[] arr) throws Exception {
     //     int k = arr.length;
     //     int power = (int) Math.pow(2,k);
@@ -29,10 +30,7 @@ public class Main {
     //Recursive method. For any set of selectivities, it calculates from bottom up
     //ei. if [f1,f2,f3], it calculates [f3], then [f2,f3], then [f1,f2,f3]
 
-    public static Double Recurse(Map<String, Double> configurations, List<Double> input) {
-=======
     public static Double Recurse(List<Double> input) {
->>>>>>> 5bdf4be2bb967e012d8fe1fd785d9698be13ec16
         double r = configurations.get("r"); double t = configurations.get("t");
         double l = configurations.get("l"); double m = configurations.get("m");
         double a = configurations.get("a"); double f = configurations.get("f");
@@ -49,12 +47,8 @@ public class Main {
                 arr.add(temp);
             }
             System.out.println("input: " + input + "   remainder " + arr);
-<<<<<<< HEAD
-            //find the best cost of the sub-temporary array
-            Double tempCost = Recurse(configurations, arr);
-=======
+
             Double tempCost = Recurse(arr);
->>>>>>> 5bdf4be2bb967e012d8fe1fd785d9698be13ec16
             System.out.println("temporary costs: " + tempCost);
 
             double p = 1;
@@ -108,53 +102,6 @@ public class Main {
         Double fCost = (k*r) + ((k - 1)*l) + (k*f) + t;
         return fCost;
     }
-
-    // public static List<List<Double>> arrange(List<List<Double>> dict) {
-    //     for (int i = 1; i < dict.size() - 1; i++) {
-    //         if (dict.get(i).size() <= dict.get(i+1).size()) {
-    //             continue;
-    //         } else {
-    //             List<Double> temp = dict.get(i+1);
-    //             dict.set(i+1, dict.get(i));
-    //             dict.set(i, temp);
-    //             arrange(dict);
-    //         }
-    //     }
-    //     return dict;
-    // }
-
-    //public static void CalcOne(Map<String, Double> configurations, List<List<Double>> dict) throws Exception {
-    //     List<Double[]> best = new ArrayList<Double[]>();
-    //     int count = 0;
-
-    //     double r = configurations.get("r"); double t = configurations.get("t");
-    //     double l = configurations.get("l"); double m = configurations.get("m");
-    //     double a = configurations.get("a"); double f = configurations.get("f");
-
-    //     for (List<Double> temp : dict) {
-    //         double p = 1;
-    //         int k = temp.size();
-
-    //         for (double num : temp) {
-    //             p *= num;
-    //         }
-    //         double q;
-    //         if (p <= .5) { q = p; } else { q = 1 - p; }
-
-    //         double logicalAnd = k*r + ((k - 1)*l) + (k*f) + t + m*q + (p*a);
-    //         double noBranch = k*r + ((k - 1)*l) + (k*f) + a;
-
-    //         double bestCost = Math.min(logicalAnd, noBranch);
-    //         if (bestCost == logicalAnd) {
-    //             Double[] insertion = {bestCost, 0.0};
-    //             best.add(insertion);
-    //         } else {
-    //             Double[] insertion = {noBranch, 1.0};
-    //             best.add(insertion);
-    //         }
-    //         count++;
-    //     }
-    // }
 
     public static void main(String[] args) throws Exception {
         String queryFile = args[0];
