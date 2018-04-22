@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.*;
+import javafx.util.*;
 
 public class Main {
 
@@ -157,6 +158,13 @@ public class Main {
         
         Double bestCost = determineBestPath(input);
         System.out.println("best path cost: " + bestCost);
+
+        Double[] bestPath = {0.5, 0.8, 0.2};
+        Double cost = 10.5;
+        Boolean logicalAnd = false;
+        Pair<Double,Boolean> pair = new Pair<Double, Boolean>(cost, logicalAnd);
+
+        Printer.print(input, bestPath); // , pair
 
         //List<Double> remainder = new ArrayList<Double>();
 
