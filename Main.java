@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.*;
+import javafx.util.*;
 
 public class Main {
 
@@ -16,17 +17,17 @@ public class Main {
             // add combination to data arraylist
             data.add(t);
         } else {
-            // loop through array from k to end 
+            // loop through array from k to end
             // generate all combinations within the remaining subset
             for (int i = k; i < arr.length; i++) {
-                // flip values arr[k] and arr[i] via temp value 
+                // flip values arr[k] and arr[i] via temp value
                 Double t = arr[k];
                 arr[k] = arr[i];
                 arr[i] = t;
-                
-                // recursively iterate through the array to find combinations 
+
+                // recursively iterate through the array to find combinations
                 combinations(arr, data, k + 1);
-    
+
                 // revert flip, via temp value again
                 t = arr[k];
                 arr[k] = arr[i];
@@ -37,7 +38,7 @@ public class Main {
 
     // generate all combinations for a given Double array
     static List<Double[]> generateCombinations(List<Double> list) {
-        // convert list<double> list to array type 
+        // convert list<double> list to array type
         Double[] arr = list.toArray(new Double[list.size()]);
         List<Double[]> data = new ArrayList<Double[]>();
         // generate combinations and save to variable "data"
@@ -123,11 +124,11 @@ public class Main {
     public static Double determineBestPath(List<Double> input) {
         // generate all combinations for a set of selectives
         List<Double[]> combinations = generateCombinations(input);
-        
+
         Double bestPath = Double.POSITIVE_INFINITY;
         // for each combination use recurse to find the min for a path.
         for (Double[] d : combinations) {
-            // test print the combinations 
+            // test print the combinations
             for (Double t : d) {
                 System.out.print(t + ", ");
             }
@@ -154,7 +155,7 @@ public class Main {
         configurations = query.cfetch();
 
         List<Double> input = selectivities.get(0);
-        
+
         Double bestCost = determineBestPath(input);
         System.out.println("best path cost: " + bestCost);
 
