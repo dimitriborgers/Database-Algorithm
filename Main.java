@@ -5,6 +5,46 @@ public class Main {
 
     static Map<String, Double> configurations;
 
+    static void combinations(Double[] arr, List<Double[]> data, int k) {
+        if (k == arr.length) {
+            // create a temp array
+            Double[] t = new Double[arr.length];
+
+            for (int i = 0; i < arr.length; i++) {
+                t[i] = arr[i];
+            }
+            // add combination to data arraylist
+            data.add(t);
+        } else {
+            // loop through array from k to end 
+            // generate all combinations within the remaining subset
+            for (int i = k; i < arr.length; i++) {
+                // flip values arr[k] and arr[i] via temp value 
+                Double t = arr[k];
+                arr[k] = arr[i];
+                arr[i] = t;
+                
+                // recursively iterate through the array to find combinations 
+                combinations(arr, data, k + 1);
+    
+                // revert flip, via temp value again
+                t = arr[k];
+                arr[k] = arr[i];
+                arr[i] = t;
+            }
+        }
+    }
+
+    // generate all combinations for a given Double array
+    static List<Double[]> generateCombinations(List<Double> list) {
+        // convert list<double> list to array type 
+        Double[] arr = list.toArray(new Double[list.size()]);
+        List<Double[]> data = new ArrayList<Double[]>();
+        // generate combinations and save to variable "data"
+        combinations(arr, data, 0);
+        return data;
+    }
+
     public static Double Recurse(List<Double> input) {
         double r = configurations.get("r"); double t = configurations.get("t");
         double l = configurations.get("l"); double m = configurations.get("m");
@@ -82,6 +122,16 @@ public class Main {
         configurations = query.cfetch();
 
         List<Double> input = selectivities.get(0);
+        // test combinations fn; example
+        List<Double[]> combinations = generateCombinations(input);
+        // test print the combinations 
+        for (Double[] d : combinations) {
+            for (Double t : d) {
+                System.out.print(t + ", ");
+            }
+            System.out.println();
+        }
+
         //List<Double> remainder = new ArrayList<Double>();
 
        // Recurse(configurations, input);
