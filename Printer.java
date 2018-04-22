@@ -19,14 +19,38 @@ public class Printer {
 
         System.out.println("------------------------------------------------------------------");
 
-        // print out if and terms 
-        String[] terms = new String[bestPath.length];
-        for (int i = 0; i < bestPath.length; i++) {
-            int index = selectivities.indexOf(bestPath[i]);
-            terms[i] = formatExp(index+1);
+
+        if(logicalAnd) {
+            // convert array to list of strings
+            List<String> bestPathList = new ArrayList<String>();
+            for (int i = 0; i < bestPath.length; i++) {
+                int index = selectivities.indexOf(bestPath[i]);
+                bestPathList.add(formatExp(index+1));
+            }
+
+            // iteratively group the terms together with & in between 
+            while (bestPathList.size() > 2) {
+                String el1 = bestPathList.remove(0); 
+                String el2 = bestPathList.remove(0); 
+                String str = "(" + el1 + " & " + el2 + ")";
+                bestPathList.add(0, str);
+            }
+
+            // the last two terms use a && 
+            String el1 = bestPathList.remove(0);
+            String el2 = bestPathList.remove(0);
+            String ifStr = "if(" + el1 + " && " + el2 + ") {";
+            System.out.println(ifStr);
+        } else {
+            // print out if and terms 
+            String[] terms = new String[bestPath.length];
+            for (int i = 0; i < bestPath.length; i++) {
+                int index = selectivities.indexOf(bestPath[i]);
+                terms[i] = formatExp(index+1);
+            }
+            String ifStr = "if(" + String.join(" && ", terms) + ") {";
+            System.out.println(ifStr);
         }
-        String ifStr = "if(" + String.join(" && ", terms) + ") {";
-        System.out.println(ifStr);
 
         System.out.println("    answer[j++] = i;");
         System.out.println("}");
