@@ -45,13 +45,38 @@ public class Main {
         return data;
     }
 
+    // public static List<List<Double>> findSubsets(Double[] arr) throws Exception {
+    //     int k = arr.length;
+    //     int power = (int) Math.pow(2,k);
+    //     List<List<Double>> dict = new ArrayList<List<Double>>();
+
+    //     for (int i = 1; i < power; i++) {
+    //         List<Double> tempArray = new ArrayList<Double>();
+
+    //         for (int j = 0; j < k; j++) {
+    //             if ((i & (1 << j)) > 0) {
+    //                 tempArray.add(arr[j]);
+    //             }
+    //         }
+    //         dict.add(tempArray);
+    //     }
+    //     arrange(dict);
+    //     System.out.println(dict);
+    //     return dict;
+    // }
+
+    //Recursive method. For any set of selectivities, it calculates from bottom up
+    //ei. if [f1,f2,f3], it calculates [f3], then [f2,f3], then [f1,f2,f3]
     public static Double Recurse(List<Double> input) {
         double r = configurations.get("r"); double t = configurations.get("t");
         double l = configurations.get("l"); double m = configurations.get("m");
         double a = configurations.get("a"); double f = configurations.get("f");
         System.out.println("start: " + input);
+
+        //checks to see if noBranching And has been used
         boolean noUsed = false;
 
+        //creates a temporary array that contains all elements, except the first from input
         if (input.size() > 1) {
             List<Double> arr = new ArrayList<Double>();
             for (int i = 1; i < input.size(); i++) {
@@ -59,6 +84,7 @@ public class Main {
                 arr.add(temp);
             }
             System.out.println("input: " + input + "   remainder " + arr);
+
             Double tempCost = Recurse(arr);
             System.out.println("temporary costs: " + tempCost);
 
@@ -78,6 +104,7 @@ public class Main {
             if (branchingAnd < logicalAnd2) {
                 noUsed = true;
             }
+            //check to see if noBranch has been used. Once it's been used once, it can't be used again.
             if (noUsed == false) {
                 Double noBranch = k*r + ((k - 1)*l) + (k*f) + a;
                 System.out.println("no branch:   " + noBranch);
