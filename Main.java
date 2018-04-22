@@ -132,17 +132,14 @@ public class Main {
             for (Double t : d) {
                 System.out.print(t + ", ");
             }
-
             List<Double> list = Arrays.asList(d);
             Double cost = Recurse(list);
-            System.out.print(" => " + cost);
-            System.out.println();
+            System.out.println(" => " + cost);
 
             if(cost < bestPath) {
                 bestPath = cost;
             }
         }
-
         return bestPath;
     }
 
@@ -154,21 +151,14 @@ public class Main {
         List<List<Double>> selectivities = query.qfetch();
         configurations = query.cfetch();
 
-        List<Double> input = selectivities.get(0);
+        for (int i = 0; input.size()-1; i++) {
+            List<Double> input = selectivities.get(i);
+            Double bestCost = determineBestPath(input);
 
-        Double bestCost = determineBestPath(input);
-        System.out.println("best path cost: " + bestCost);
-
-        Double[] bestPath = {0.5, 0.8, 0.2, 0.3};
-        Double cost = 10.5;
-        Boolean logicalAnd = true;
-        Printer.print(input, bestPath, cost, logicalAnd);
-
-        //List<Double> remainder = new ArrayList<Double>();
-
-        //List<List<Double>> subsets = findSubsets(selectivities.get(0));
-
-        //List<List<Double>> subsets = findSubsets(selectivities.get(0));
-        //CalcOne(configurations, subsets);
+            Double[] bestPath = {0.5, 0.8, 0.2, 0.3};
+            Double cost = 10.5;
+            Boolean logicalAnd = true;
+            Printer.print(input, bestPath, cost, logicalAnd);
+        }
     }
 }
