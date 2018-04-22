@@ -45,26 +45,6 @@ public class Main {
         return data;
     }
 
-    // public static List<List<Double>> findSubsets(Double[] arr) throws Exception {
-    //     int k = arr.length;
-    //     int power = (int) Math.pow(2,k);
-    //     List<List<Double>> dict = new ArrayList<List<Double>>();
-
-    //     for (int i = 1; i < power; i++) {
-    //         List<Double> tempArray = new ArrayList<Double>();
-
-    //         for (int j = 0; j < k; j++) {
-    //             if ((i & (1 << j)) > 0) {
-    //                 tempArray.add(arr[j]);
-    //             }
-    //         }
-    //         dict.add(tempArray);
-    //     }
-    //     arrange(dict);
-    //     System.out.println(dict);
-    //     return dict;
-    // }
-
     //Recursive method. For any set of selectivities, it calculates from bottom up
     //ei. if [f1,f2,f3], it calculates [f3], then [f2,f3], then [f1,f2,f3]
     public static Double Recurse(List<Double> input) {

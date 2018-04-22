@@ -65,3 +65,24 @@
 //         count++;
 //     }
 // }
+
+
+// public static List<List<Double>> findSubsets(Double[] arr) throws Exception {
+//     int k = arr.length;
+//     int power = (int) Math.pow(2,k);
+//     List<List<Double>> dict = new ArrayList<List<Double>>();
+
+//     for (int i = 1; i < power; i++) {
+//         List<Double> tempArray = new ArrayList<Double>();
+
+//         for (int j = 0; j < k; j++) {
+//             if ((i & (1 << j)) > 0) {
+//                 tempArray.add(arr[j]);
+//             }
+//         }
+//         dict.add(tempArray);
+//     }
+//     arrange(dict);
+//     System.out.println(dict);
+//     return dict;
+// }
