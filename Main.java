@@ -142,7 +142,7 @@ public class Main {
             }
             List<Double> list = Arrays.asList(d);
             Double cost = Recurse(list);
-            System.out.println(" => " + cost);
+            //System.out.println(" => " + cost);
 
             if(cost < bestPath) {
                 bestPath = cost;
@@ -160,7 +160,7 @@ public class Main {
         List<List<Double>> selectivities = query.qfetch();
         configurations = query.cfetch();
 
-        for (int i = 0; i < selectivities.size() - 1; i++) {
+        for (int i = 0; i < selectivities.size(); i++) {
             List<Double> input = selectivities.get(i);
             Double bestCost = determineBestPath(input);
             Printer.print(input, BestCombo, bestCost, logicalAndBool);

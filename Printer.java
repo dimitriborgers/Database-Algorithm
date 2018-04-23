@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.lang.String;
 
 public class Printer {
 
@@ -28,21 +29,21 @@ public class Printer {
                 bestPathList.add(formatExp(index+1));
             }
 
-            // iteratively group the terms together with & in between 
+            // iteratively group the terms together with & in between
             while (bestPathList.size() > 2) {
-                String el1 = bestPathList.remove(0); 
-                String el2 = bestPathList.remove(0); 
+                String el1 = bestPathList.remove(0);
+                String el2 = bestPathList.remove(0);
                 String str = "(" + el1 + " & " + el2 + ")";
                 bestPathList.add(0, str);
             }
 
-            // the last two terms use a && 
+            // the last two terms use a &&
             String el1 = bestPathList.remove(0);
             String el2 = bestPathList.remove(0);
             String ifStr = "if(" + el1 + " && " + el2 + ") {";
             System.out.println(ifStr);
         } else {
-            // print out if and terms 
+            // print out if and terms
             String[] terms = new String[bestPath.length];
             for (int i = 0; i < bestPath.length; i++) {
                 int index = selectivities.indexOf(bestPath[i]);
