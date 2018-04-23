@@ -148,6 +148,7 @@ public class Main {
         List<List<Double>> selectivities = query.qfetch();
         configurations = query.cfetch();
 
+        // for each set of selectivities, print the details for the best path.
         for (int i = 0; i < selectivities.size(); i++) {
             List<Double> input = selectivities.get(i);
             Double bestCost = determineBestPath(input);

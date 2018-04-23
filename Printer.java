@@ -17,9 +17,7 @@ public class Printer {
             selectivitiesStr += (s + " ");
         }
         System.out.println(selectivitiesStr);
-
         System.out.println("------------------------------------------------------------------");
-
 
         if(logicalAnd) {
             // convert array to list of strings
