@@ -24,7 +24,7 @@ The query.txt file includes selectivity for basic terms. Our program can process
 
 The config.txt file defines the values of estimated costs, which affects our best path algorithm. 
 
-Within our Main.java file we compute the best path for each set of selecitivities. We feed the query.txt and config.txt files into our Read class, parseing the variables so that they can used in our methods. 
+Within our Main.java file we compute the best path for each set of selecitivities. We feed the query.txt and config.txt files into our Read class, parsing the variables so that they can be used in our methods. 
 
 In order to find the best path, we generate all possible combinations of the set of selectivities, and find the one with the minimum cost. We save the path in a BestCombo variable. 
 
